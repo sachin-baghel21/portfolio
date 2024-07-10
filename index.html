@@ -1,88 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
-    <!-- Include Tailwind CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OOps Using App</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .box {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+</style>
 </head>
-<body class="bg-gray-100">
+<body>
 
-    <!-- Navbar -->
-    <nav class="bg-gray-800 text-white sticky top-0 w-full z-10">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center py-4">
-                <div class="flex items-center">
-                    <span class="font-semibold text-xl">Logo</span>
-                </div>
-                <div class="hidden md:block">
-                    <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-gray-700">Home</a>
-                    <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-gray-700">About</a>
-                    <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-gray-700">Services</a>
-                    <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-gray-700">Contact</a>
-                </div>
-                <div class="md:hidden">
-                    <button class="mobile-menu-button">
-                        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </nav>
+<div class="container">
+  <h2>DOM Manipulation Example</h2>
+  
+  <!-- Create a form -->
+  <div class="box" id="formBox">
+    <form id="myForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email">
+      <button type="button" onclick="submitForm()">Submit</button>
+    </form>
+    <button onclick="clearResults()">Reset Data</button>
+  </div>
 
-    <!-- Mobile Menu (hidden by default) -->
-    <div class="md:hidden fixed inset-0 bg-gray-800 bg-opacity-75 z-50 hidden">
-        <div class="flex flex-col items-start h-full">
-            <button class="mobile-menu-button ml-4 mt-4">
-                <svg class="h-6 w-6 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 18L18 6M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-            <div class="mt-10 flex flex-col items-center">
-                <a href="#" class="mt-3 px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-gray-700">Home</a>
-                <a href="#" class="mt-3 px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-gray-700">About</a>
-                <a href="#" class="mt-3 px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-gray-700">Services</a>
-                <a href="#" class="mt-3 px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-gray-700">Contact</a>
-            </div>
-        </div>
-    </div>
+  <!-- Display area for results -->
+  <div class="box" id="resultsBox">
+    <h3>Results:</h3>
+    <ul id="resultsList"></ul>
+  </div>
+</div>
 
-    <!-- Main Content -->
-    <main class="mt-20 md:mt-24">
-        <!-- Section 1: Text with Cards -->
-        <section class="bg-white py-12">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-semibold text-gray-800 mb-6 text-center">Welcome to Our Website</h2>
-                <div class="flex flex-wrap justify-center">
-                    <div class="max-w-sm rounded overflow-hidden shadow-lg m-4">
-                        <img class="w-full" src="https://via.placeholder.com/400x200" alt="Placeholder Image">
-                        <div class="px-6 py-4">
-                            <div class="font-bold text-xl mb-2">Card Title</div>
-                            <p class="text-gray-700 text-base">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                    <!-- Add more cards as needed -->
-                </div>
-            </div>
-        </section>
-    </main>
+<script>
+// Function to handle form submission
+function submitForm() {
+  // Get form values
+  let name = document.getElementById('name').value;
+  let email = document.getElementById('email').value;
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-4 mt-20">
-        <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2024 Your Company. All rights reserved.</p>
-        </div>
-    </footer>
+  // Create a new list item
+  let listItem = document.createElement('li');
+  listItem.textContent = `Name: ${name}, Email: ${email}`;
 
-    <!-- Optional: JavaScript for mobile menu toggle -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const button = document.querySelector('.mobile-menu-button');
-            const menu = document.querySelector('.md\\:hidden');
-            button.addEventListener('click', function () {
-                menu.classList.toggle('hidden');
-            });
-        });
-    </script>
+  // Append the new list item to results list
+  let resultsList = document.getElementById('resultsList');
+  resultsList.appendChild(listItem);
+
+  // Clear the form fields
+  document.getElementById('myForm').reset();
+}
+
+// Function to clear results list
+function clearResults() {
+  // Clear form fields
+  document.getElementById('myForm').reset();
+
+  // Clear results list
+  let resultsList = document.getElementById('resultsList');
+  while (resultsList.firstChild) {
+    resultsList.removeChild(resultsList.firstChild);
+  }
+}
+</script>
 
 </body>
 </html>
